@@ -103,18 +103,27 @@
   </Target>
   <Target Name="PostBuildPackage" AfterTargets="Build">   
     <!-- Create the target directory if it doesn't exist -->
+    <Message Text="Preparing package: $(ProjectDir)Build\Package\plugins" Importance="High" />
     <MakeDir Directories="$(ProjectDir)Build\Package" Condition="!Exists('$(ProjectDir)Build\Package')" />
     <MakeDir Directories="$(ProjectDir)Build\Package\plugins" Condition="!Exists('$(ProjectDir)Build\Package\plugins')" />
     <!-- Copy the compiled DLL -->
+    <Message Text="$(TargetFileName) -&gt; $(ProjectDir)Build\Package\plugins\$(TargetFileName)" Importance="High" />
     <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ProjectDir)Build\Package\plugins" SkipUnchangedFiles="true" />
     <!-- Copy the PDB if it exists -->
+    <Message Text="$(TargetDir)$(TargetName).pdb -&gt; $(ProjectDir)Build\Package\plugins\$(TargetDir)$(TargetName).pdb" Importance="High" Condition="Exists('$(TargetDir)$(TargetName).pdb')" />
     <Copy SourceFiles="$(TargetDir)$(TargetName).pdb" DestinationFolder="$(ProjectDir)Build\Package\plugins" SkipUnchangedFiles="true" Condition="Exists('$(TargetDir)$(TargetName).pdb')" />
     <!-- Copy Thunderstore files -->
+    <Message Text="icon.png -&gt; $(ProjectDir)Build\Package\icon.png" Importance="High" />
     <Copy SourceFiles="$(ProjectDir)Build\Thunderstore\icon.png" DestinationFolder="$(ProjectDir)Build\Package" SkipUnchangedFiles="true" />
+    <Message Text="manifest.json -&gt; $(ProjectDir)Build\Package\manifest.json" Importance="High" />
     <Copy SourceFiles="$(ProjectDir)Build\Thunderstore\manifest.json" DestinationFolder="$(ProjectDir)Build\Package" SkipUnchangedFiles="true" />
     <!-- Copy root project files -->
+    <Message Text="CHANGELOG.md -&gt; $(ProjectDir)Build\Package\CHANGELOG.md" Importance="High" />
     <Copy SourceFiles="$(ProjectDir)CHANGELOG.md" DestinationFolder="$(ProjectDir)Build\Package" SkipUnchangedFiles="true" />
+    <Message Text="README.md -&gt; $(ProjectDir)Build\Package\README.md" Importance="High" />
     <Copy SourceFiles="$(ProjectDir)README.md" DestinationFolder="$(ProjectDir)Build\Package" SkipUnchangedFiles="true" />
+    <!-- Create ZIP archive -->
+    <Message Text="Creating ZIP archive: $(ProjectDir)Build\$(AssemblyName)-$(AssemblyVersion)-$(Configuration).zip" Importance="High" />
     <Exec Command="powershell -NoLogo -NoProfile -Command &quot;if(Test-Path '$(ProjectDir)Build\$(AssemblyName)-$(AssemblyVersion)-$(Configuration).zip'){Remove-Item '$(ProjectDir)Build\$(AssemblyName)-$(AssemblyVersion)-$(Configuration).zip'}; Compress-Archive -Path '$(ProjectDir)Build\Package\*' -DestinationPath '$(ProjectDir)Build\$(AssemblyName)-$(AssemblyVersion)-$(Configuration).zip'&quot;" />
   </Target>
 </Project>
