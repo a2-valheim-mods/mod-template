@@ -80,6 +80,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>manifest.tt</DependentUpon>
     </None>
+    <None Include="LICENSE.md" />
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
@@ -101,7 +102,7 @@
     <Message Text="Running T4 templates..." Importance="high" />
     <Exec Command="&quot;$(DevEnvDir)TextTransform.exe&quot; %(T4Templates.FullPath)" />
   </Target>
-  <Target Name="PostBuildPackage" AfterTargets="Build">   
+  <Target Name="PostBuildPackage" AfterTargets="Build">
     <!-- Create the target directory if it doesn't exist -->
     <Message Text="Preparing package: $(ProjectDir)Build\Package\plugins" Importance="High" />
     <MakeDir Directories="$(ProjectDir)Build\Package" Condition="!Exists('$(ProjectDir)Build\Package')" />
