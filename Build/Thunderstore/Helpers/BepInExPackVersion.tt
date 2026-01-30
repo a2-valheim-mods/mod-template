@@ -5,12 +5,12 @@
 <#@ import namespace="System.IO" #>
 <#@ import namespace="System.Web.Script.Serialization" #>
 <#
-var BEPINEXPACK_VERSION = GetLatestBepInExVersion("5.4.2304");
+var BEPINEXPACK_VERSION = GetLatestBepInExVersion("5.4.2333");
 #>
 <#+
 string GetLatestBepInExVersion(string fallback)
 {
-    string url = "https://thunderstore.io/api/v1/package-metrics/BepInEx/BepInExPack/";
+    string url = "https://thunderstore.io/api/v1/package-metrics/denikson/BepInExPack_Valheim/";
 
     try
     {
