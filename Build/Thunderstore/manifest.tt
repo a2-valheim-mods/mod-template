@@ -1,8 +1,8 @@
 ﻿<#@ template language="C#" debug="false" hostspecific="true" #>
 <#@ output extension=".json" #>
-<#@ include file="Helpers\BepInExPackVersion.tt" #>
-<#@ include file="Helpers\JotunnVersion.tt" #>
-<#@ include file="..\..\Consts\PluginConsts.tt" #>
+<#@ include file="Helpers\BepInExPackVersion.tt.part" #>
+<#@ include file="Helpers\JotunnVersion.tt.part" #>
+<#@ include file="..\..\Consts\PluginConsts.tt.part" #>
 <#
  var version = new Version(VERSION);
 #>

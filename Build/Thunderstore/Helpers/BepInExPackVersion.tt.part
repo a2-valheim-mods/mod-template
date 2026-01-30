@@ -8,6 +8,7 @@
 var BEPINEXPACK_VERSION = GetLatestBepInExVersion("5.4.2333");
 #>
 <#+
+#pragma warning disable 0168, 0219
 string GetLatestBepInExVersion(string fallback)
 {
     string url = "https://thunderstore.io/api/v1/package-metrics/denikson/BepInExPack_Valheim/";
@@ -34,4 +35,5 @@ string GetLatestBepInExVersion(string fallback)
         return fallback;
     }
 }
+#pragma warning restore 0168, 0219
 #>

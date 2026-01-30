@@ -5,6 +5,10 @@
 [Bb]uild/[Pp]ackage/
 [Bb]uild/[Pp]ackages/
 [Bb]uild/*.zip
+Properties/AssemblyInfo.cs
+Properties/AssemblyVersion.props
+Properties/PluginInfo.cs
+Build/Thunderstore/manifest.json
 
 ## Visual Studio
 ## https://github.com/github/gitignore/blob/main/VisualStudio.gitignore

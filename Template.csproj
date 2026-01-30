@@ -48,17 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Plugin.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AssemblyInfo.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\IgnoreAccessModifiers.cs" />
-    <Compile Include="Properties\PluginInfo.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PluginInfo.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Build\Thunderstore\icon.png" />
@@ -66,8 +56,8 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>manifest.json</LastGenOutput>
     </Content>
-    <None Include="Build\Thunderstore\Helpers\BepInExPackVersion.tt" />
-    <None Include="Build\Thunderstore\Helpers\JotunnVersion.tt" />
+    <None Include="Build\Thunderstore\Helpers\BepInExPackVersion.tt.part" />
+    <None Include="Build\Thunderstore\Helpers\JotunnVersion.tt.part" />
     <Content Include="Properties\AssemblyInfo.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>AssemblyInfo.cs</LastGenOutput>
@@ -80,17 +70,12 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>PluginInfo.cs</LastGenOutput>
     </Content>
-    <None Include="Consts\PluginConsts.tt" />
+    <None Include="Consts\PluginConsts.tt.part" />
     <None Include="CHANGELOG.md" />
     <None Include="Build\Thunderstore\manifest.json">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>manifest.tt</DependentUpon>
-    </None>
-    <None Include="Properties\AssemblyVersion.props">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AssemblyVersion.tt</DependentUpon>
     </None>
     <None Include="README.md" />
   </ItemGroup>
@@ -106,7 +91,14 @@
     <Error Condition="!Exists('Build\packages\JotunnLib.2.27.1\build\JotunnLib.props')" Text="$([System.String]::Format('$(ErrorText)', 'Build\packages\JotunnLib.2.27.1\build\JotunnLib.props'))" />
   </Target>
   <Import Project="$(ProjectDir)Properties\AssemblyVersion.props" Condition="Exists('$(ProjectDir)Properties\AssemblyVersion.props')" />
-  <Target Name="PostBuildPackage" AfterTargets="Build">
+  <Target Name="BeforeBuild">
+    <ItemGroup>
+      <T4Templates Include="**\*.tt" />
+    </ItemGroup>
+    <Message Text="Running T4 templates..." Importance="high" />
+    <Exec Command="&quot;$(DevEnvDir)TextTransform.exe&quot; %(T4Templates.FullPath)" />
+  </Target>
+  <Target Name="PostBuildPackage" AfterTargets="Build">   
     <!-- Create the target directory if it doesn't exist -->
     <MakeDir Directories="$(ProjectDir)Build\Package" Condition="!Exists('$(ProjectDir)Build\Package')" />
     <MakeDir Directories="$(ProjectDir)Build\Package\plugins" Condition="!Exists('$(ProjectDir)Build\Package\plugins')" />

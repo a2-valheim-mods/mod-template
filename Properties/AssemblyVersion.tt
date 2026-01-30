@@ -1,6 +1,6 @@
 ﻿<#@ template debug="false" hostspecific="false" language="C#" #>
 <#@ output extension=".props" #>
-<#@ include file="..\Consts\PluginConsts.tt" #>
+<#@ include file="..\Consts\PluginConsts.tt.part" #>
 <#
     var version = new Version(VERSION);
 #>

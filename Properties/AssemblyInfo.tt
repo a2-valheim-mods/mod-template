@@ -1,6 +1,6 @@
 ﻿<#@ template language="C#" debug="false" hostspecific="true" #>
 <#@ output extension=".cs" #>
-<#@ include file="..\Consts\PluginConsts.tt" #>
+<#@ include file="..\Consts\PluginConsts.tt.part" #>
 <#
 	var version = new Version(VERSION);
 	var ASSEMBLY_GUID = new Guid(System.Security.Cryptography.MD5.Create().ComputeHash(System.Text.Encoding.UTF8.GetBytes(PREFIX + "." + NAME)));
