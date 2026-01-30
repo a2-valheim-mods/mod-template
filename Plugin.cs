@@ -11,7 +11,7 @@ namespace Template
     [NetworkCompatibility(CompatibilityLevel.NotEnforced, VersionStrictness.None)]
     internal class Plugin : BaseUnityPlugin
     {
-        private static readonly Harmony _harmony = new Harmony(PluginInfo.PluginGUID);
+        private static readonly Harmony _harmony = new(PluginInfo.PluginGUID);
         private static bool _isPatched = false;
 
         public void Awake()
