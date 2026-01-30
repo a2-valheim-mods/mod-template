@@ -1,0 +1,11 @@
+﻿
+{
+    "name": "mod name",
+    "description": "mod description",
+    "version_number": "0.0.0",
+    "website_url": "https://example.com",
+    "dependencies": [
+        "denikson-BepInExPack_Valheim-5.4.2304",
+        "ValheimModding-Jotunn-2.27.1"
+    ]
+}

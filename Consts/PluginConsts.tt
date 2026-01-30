@@ -1,0 +1,7 @@
+﻿<#
+var VERSION = "0.0.0.0";
+var PREFIX = "prefix";
+var NAME = "mod name";
+var DESCRIPTION = "mod description";
+var URL = "https://example.com";
+#>
