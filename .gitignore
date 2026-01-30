@@ -4,6 +4,7 @@
 [Bb]uild/[Oo]bj/
 [Bb]uild/[Pp]ackage/
 [Bb]uild/[Pp]ackages/
+[Bb]uild/*.zip
 
 ## Visual Studio
 ## https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
