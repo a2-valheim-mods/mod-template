@@ -21,7 +21,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
   </PropertyGroup>
-    <PropertyGroup>
+  <PropertyGroup>
     <LangVersion>12.0</LangVersion>
     <Nullable>enable</Nullable>
   </PropertyGroup>
@@ -107,7 +107,15 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup />
+  <PropertyGroup>
+    <!-- TEXT TEMPLATES CONFIGUATION -->
+    <TextTemplatingPath>$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TextTemplating</TextTemplatingPath>
+    <TransformOnBuild>true</TransformOnBuild>
+    <OverwriteReadOnlyOutputFiles>true</OverwriteReadOnlyOutputFiles>
+    <TransformOutOfDateOnly>false</TransformOutOfDateOnly>
+  </PropertyGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(TextTemplatingPath)\Microsoft.TextTemplating.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
@@ -115,13 +123,6 @@
     <Error Condition="!Exists('Build\packages\JotunnLib.2.27.1\build\JotunnLib.props')" Text="$([System.String]::Format('$(ErrorText)', 'Build\packages\JotunnLib.2.27.1\build\JotunnLib.props'))" />
   </Target>
   <Import Project="$(ProjectDir)Properties\AssemblyVersion.props" Condition="Exists('$(ProjectDir)Properties\AssemblyVersion.props')" />
-  <Target Name="BeforeBuild">
-    <ItemGroup>
-      <T4Templates Include="**\*.tt" />
-    </ItemGroup>
-    <Message Text="Running T4 templates..." Importance="high" />
-    <Exec Command="&quot;$(DevEnvDir)TextTransform.exe&quot; %(T4Templates.FullPath)" />
-  </Target>
   <Target Name="PostBuildPackage" AfterTargets="Build">
     <!-- Create the target directory if it doesn't exist -->
     <Message Text="Preparing package: $(ProjectDir)Build\Package\plugins" Importance="High" />
