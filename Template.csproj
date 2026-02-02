@@ -125,6 +125,9 @@
   </Target>
   <Import Project="$(ProjectDir)Properties\AssemblyVersion.props" Condition="Exists('$(ProjectDir)Properties\AssemblyVersion.props')" />
   <Target Name="PostBuildPackage" AfterTargets="Build">
+    <!-- Delete existing package directory if it exists -->
+    <Message Text="Cleaning package directory: $(ProjectDir)Build\Package" Importance="High" />
+    <RemoveDir Directories="$(ProjectDir)Build\Package" Condition="Exists('$(ProjectDir)Build\Package')" />
     <!-- Create the target directory if it doesn't exist -->
     <Message Text="Preparing package: $(ProjectDir)Build\Package\plugins" Importance="High" />
     <MakeDir Directories="$(ProjectDir)Build\Package" Condition="!Exists('$(ProjectDir)Build\Package')" />
