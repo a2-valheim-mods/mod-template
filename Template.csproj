@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Build\Thunderstore\Helpers\GetPackageLatestVersion.tt.part" />
     <None Include="Build\Thunderstore\PostBuildStripBOM.ps1" />
     <Compile Include="Plugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -75,8 +76,6 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>manifest.json</LastGenOutput>
     </Content>
-    <None Include="Build\Thunderstore\Helpers\BepInExPackVersion.tt.part" />
-    <None Include="Build\Thunderstore\Helpers\JotunnVersion.tt.part" />
     <Content Include="Properties\AssemblyInfo.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>AssemblyInfo.cs</LastGenOutput>
